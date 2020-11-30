@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
@@ -26,10 +26,10 @@ const Container = styled.div`
 const Card = styled.div`
   min-width: 500px;
   width: 45%;
-  height: 170px;
+  min-height: 170px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
   box-shadow: 2px 2px 2px #ddd;
   &:hover {
     cursor: pointer;
@@ -51,7 +51,7 @@ const Content = styled.div`
   margin-bottom: 7px;
 `;
 
-const Text = styled.div<{ font: number }>`
+const Text = styled.div<{ font: number | null }>`
   font-size: ${(props) => props.font || 12}px;
   line-height: 1.5em;
 `;
@@ -67,8 +67,11 @@ interface CardProps {
 
 const News = ({ item }: CardProps) => {
   const onClick = (link: string) => {
-    console.log(link);
     window.open(link, "_blank");
+  };
+  const shorterText = (text: string, len: number) => {
+    if (text.length > len) return `${text.slice(0, len)}...`;
+    else return text;
   };
 
   return (
@@ -76,10 +79,11 @@ const News = ({ item }: CardProps) => {
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
         <NewStar />
-        <Text font={14}>{item.title}</Text>
-        {item.author && <Text font={12}>기자: {item.author}</Text>}
-        <Text font={11}>출처: {item.source.name}</Text>
-        <Text font={11}>{dayjs().to(dayjs(item.publishedAt))}</Text>
+        {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
+        {item.content && <Text font={12}>{shorterText(item.content, 50)}</Text>}
+        {item.author && <Text font={12}>Author: {item.author}</Text>}
+        <Text font={11}>Source: {item.source.name}</Text>
+        <Text font={11}>Created: {dayjs().to(dayjs(item.publishedAt))}</Text>
       </Content>
     </Card>
   );
