@@ -1,18 +1,14 @@
 import { createReducer } from "typesafe-actions";
-// import { GithubState, GithubAction } from "./types";
-// import {
-//   GET_USER_PROFILE,
-//   GET_USER_PROFILE_SUCCESS,
-//   GET_USER_PROFILE_ERROR,
-// } from "./actions";
+import { NewsState, NewsAction } from "reducers/news/types";
+import {
+  GET_NEWS,
+  GET_NEWS_SUCCESS,
+  GET_NEWS_ERROR,
+} from "reducers/news/actions";
 
-export const GET_NEWS = "news/GET_NEWS" as const;
-export const GET_NEWS_SUCCESS = "news/GET_NEWS_SUCCESS" as const;
-export const GET_NEWS_ERROR = "news/GET_NEWS_ERROR" as const;
-
-interface NewsState {}
-
-interface NewsAction {}
+// export const GET_NEWS = "news/GET_NEWS" as const;
+// export const GET_NEWS_SUCCESS = "news/GET_NEWS_SUCCESS" as const;
+// export const GET_NEWS_ERROR = "news/GET_NEWS_ERROR" as const;
 
 const initialState: NewsState = {
   news: {

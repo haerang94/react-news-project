@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import news from "modules/news";
+import news from "reducers/news";
 
 const rootReducer = combineReducers({ news });
 
