@@ -3,11 +3,11 @@ import { Star } from "@styled-icons/bootstrap/Star";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
 
 const NewStar = styled(Star)`
-  position: absolute;
-  top: 20px;
-  right: 10px;
+  margin-left: auto;
+  margin-bottom: 7px;
   width: 20px;
   height: 20px;
+  color: lightGray;
 `;
 
 const NewStarFill = styled(StarFill)`

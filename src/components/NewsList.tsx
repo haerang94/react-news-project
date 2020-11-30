@@ -3,6 +3,9 @@ import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
 import { NewStar, NewStarFill } from "components/sharedComponents";
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+dayjs.extend(relativeTime);
 
 const Wrapper = styled.section`
   width: 100%;
@@ -24,8 +27,8 @@ const Card = styled.div`
   position: relative;
   min-width: 194px;
   width: 45%;
+  height: 170px;
   display: flex;
-  align-items: center;
   padding: 20px;
   box-shadow: 2px 2px 2px #ddd;
   &:hover {
@@ -64,12 +67,13 @@ interface CardProps {
 const News = ({ item }: CardProps) => {
   return (
     <Card>
-      <NewStar />
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
+        <NewStar />
         <Text font={14}>{item.title}</Text>
         {item.author && <Text font={12}>기자: {item.author}</Text>}
         <Text font={11}>출처: {item.source.name}</Text>
+        <Text font={11}>{dayjs().to(dayjs(item.publishedAt))}</Text>
       </Content>
     </Card>
   );
