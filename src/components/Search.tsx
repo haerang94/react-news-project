@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -27,11 +27,28 @@ const Button = styled.button`
   border: none;
 `;
 
-const Search: React.FC = () => {
+interface Props {
+  onSubmitInput: (text: string) => void;
+}
+
+const Search = ({ onSubmitInput }: Props) => {
+  const [input, setInput] = useState("");
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmitInput(input);
+  };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
   return (
-    <Form>
-      <Input placeholder="검색어를 입력하세요" />
-      <Button>Search</Button>
+    <Form onSubmit={onSubmit}>
+      <Input
+        placeholder="검색어를 입력하세요"
+        value={input}
+        onChange={onChange}
+      />
+      <Button type="submit">Search</Button>
     </Form>
   );
 };

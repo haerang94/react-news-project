@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Card = styled.div`
   position: relative;
-  min-width: 194px;
+  min-width: 500px;
   width: 45%;
   height: 170px;
   display: flex;
@@ -48,6 +48,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 65%;
+  margin-bottom: 7px;
 `;
 
 const Text = styled.div<{ font: number }>`

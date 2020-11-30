@@ -22,12 +22,7 @@ const NewsContainer: React.FC = () => {
   console.log(data);
   if (loading) return <div>로딩중...</div>;
   if (error) return <div>에러남</div>;
-  return (
-    <>
-      <Search />
-      <NewsList data={data} />
-    </>
-  );
+  return <NewsList data={data} />;
 };
 
 export default NewsContainer;
