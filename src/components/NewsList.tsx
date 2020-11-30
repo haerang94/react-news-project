@@ -19,22 +19,22 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 `;
 
 const Card = styled.div`
-  position: relative;
   min-width: 500px;
   width: 45%;
   height: 170px;
   display: flex;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 10px;
   box-shadow: 2px 2px 2px #ddd;
   &:hover {
     cursor: pointer;
   }
-  margin-bottom: 20px;
+  margin: 10px;
 `;
 
 const Img = styled.img`
