@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
@@ -66,8 +66,13 @@ interface CardProps {
 }
 
 const News = ({ item }: CardProps) => {
+  const onClick = (link: string) => {
+    console.log(link);
+    window.open(link, "_blank");
+  };
+
   return (
-    <Card>
+    <Card onClick={(e) => onClick(item.url)}>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
         <NewStar />
