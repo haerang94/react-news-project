@@ -1,7 +1,12 @@
 import React from "react";
+import NewsContainer from "containers/NewsContainer";
 
 const MainPage = () => {
-  return <div>main</div>;
+  return (
+    <div>
+      <NewsContainer />
+    </div>
+  );
 };
 
 export default MainPage;
