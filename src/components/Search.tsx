@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
+import { Button } from "components/sharedComponents";
 
 const Form = styled.form`
   width: 100%;
@@ -18,13 +19,6 @@ const Input = styled.input`
   margin-right: 10px;
   border-bottom: 1.5px solid black;
   padding: 10px;
-`;
-
-const Button = styled.button`
-  height: 30px;
-  background: black;
-  color: #fff;
-  border: none;
 `;
 
 interface Props {

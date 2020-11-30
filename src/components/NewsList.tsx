@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
-import { NewStar, NewStarFill } from "components/sharedComponents";
+import { NewStar, NewStarFill, Button } from "components/sharedComponents";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 dayjs.extend(relativeTime);
@@ -33,9 +33,6 @@ const Card = styled.div`
   padding: 10px 20px;
   box-shadow: 2px 2px 2px #ddd;
   margin: 10px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Img = styled.img`
@@ -46,10 +43,17 @@ const Img = styled.img`
 `;
 
 const Content = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 65%;
   margin-bottom: 7px;
+`;
+
+const MoreButton = styled(Button)`
+  position: absolute;
+  bottom: 0;
+  right: 10px;
 `;
 
 const Text = styled.div<{ font: number | null }>`
@@ -76,7 +80,7 @@ const News = ({ item }: CardProps) => {
   };
 
   return (
-    <Card onClick={(e) => onClick(item.url)}>
+    <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
         <NewStar />
@@ -85,6 +89,7 @@ const News = ({ item }: CardProps) => {
         {item.author && <Text font={12}>Author: {item.author}</Text>}
         <Text font={11}>Source: {item.source.name}</Text>
         <Text font={11}>Created: {dayjs().to(dayjs(item.publishedAt))}</Text>
+        <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
       </Content>
     </Card>
   );

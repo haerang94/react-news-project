@@ -15,4 +15,16 @@ const NewStarFill = styled(StarFill)`
   height: 20px;
 `;
 
-export { NewStar, NewStarFill };
+const Button = styled.button`
+  width: 100px;
+  padding: 5px;
+  height: 30px;
+  background: black;
+  color: #fff;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export { NewStar, NewStarFill, Button };
