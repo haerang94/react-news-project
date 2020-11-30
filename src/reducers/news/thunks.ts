@@ -2,14 +2,16 @@ import { ThunkAction } from "redux-thunk";
 import { RootState } from "reducers";
 import { NewsAction } from "reducers/news/types";
 import { getNews, searchNews } from "utils/api";
-import { getNewsAsync } from "reducers/news/actions";
+import { getNewsAsync, setNewsKeyWord } from "reducers/news/actions";
 
-export function getNewsThunk(): ThunkAction<void, RootState, null, NewsAction> {
+export function getNewsThunk(
+  page: number = 1
+): ThunkAction<void, RootState, null, NewsAction> {
   return async (dispatch) => {
     const { request, success, failure } = getNewsAsync;
     dispatch(request());
     try {
-      const data = await getNews();
+      const data = await getNews(page);
       dispatch(success(data));
     } catch (e) {
       dispatch(failure(e));
@@ -17,14 +19,15 @@ export function getNewsThunk(): ThunkAction<void, RootState, null, NewsAction> {
   };
 }
 export function searchNewsThunk(
-  text: string
+  text: string,
+  page: number = 1
 ): ThunkAction<void, RootState, null, NewsAction> {
   return async (dispatch) => {
     const { request, success, failure } = getNewsAsync;
     dispatch(request());
     try {
-      const data = await searchNews(text);
-      console.log(data);
+      dispatch(setNewsKeyWord(text));
+      const data = await searchNews(text, page);
       dispatch(success(data));
     } catch (e) {
       dispatch(failure(e));

@@ -26,15 +26,16 @@ const Container = styled.div`
 const Card = styled.div`
   min-width: 500px;
   width: 45%;
-  min-height: 170px;
+  height: 200px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
   box-shadow: 2px 2px 2px #ddd;
+  margin: 10px;
   &:hover {
     cursor: pointer;
   }
-  margin: 10px;
 `;
 
 const Img = styled.img`

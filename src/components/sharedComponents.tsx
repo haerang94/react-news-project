@@ -4,6 +4,7 @@ import { StarFill } from "@styled-icons/bootstrap/StarFill";
 
 const NewStar = styled(Star)`
   margin-left: auto;
+  margin-bottom: 7px;
   width: 20px;
   height: 20px;
   color: lightGray;

@@ -5,11 +5,11 @@ import Search from "components/Search";
 import { searchNewsThunk } from "reducers/news";
 
 const SearchContainer = () => {
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.news.news
-  );
+  const { keyword } = useSelector((state: RootState) => ({
+    keyword: state.news.text,
+  }));
   const dispatch = useDispatch();
-
+  console.log(keyword);
   const onSubmitInput = (text: string) => {
     dispatch(searchNewsThunk(text));
   };
