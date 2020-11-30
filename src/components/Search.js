@@ -10,14 +10,14 @@ const Form = styled.form`
     border: none;
     outline: none;
   }
+  margin: 20px;
 `;
 const Input = styled.input`
   width: 50%;
   height: 30px;
   margin-right: 10px;
   border-bottom: 1.5px solid black;
-  display: flex;
-  justify-content: center;
+  padding: 10px;
 `;
 
 const Button = styled.button`
