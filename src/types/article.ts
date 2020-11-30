@@ -1,5 +1,6 @@
 export interface Welcome {
   articles: Article[];
+  data?: Article[];
 }
 
 export interface Article {

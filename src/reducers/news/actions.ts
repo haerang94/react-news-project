@@ -1,5 +1,5 @@
 import { createAsyncAction } from "typesafe-actions";
-import { Welcome } from "types/article";
+import { Article } from "types/article";
 import { AxiosError } from "axios";
 
 export const GET_NEWS = "news/GET_NEWS";
@@ -10,4 +10,4 @@ export const getNewsAsync = createAsyncAction(
   GET_NEWS,
   GET_NEWS_SUCCESS,
   GET_NEWS_ERROR
-)<any, Welcome, AxiosError>();
+)<undefined, Article[], AxiosError>();

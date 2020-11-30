@@ -25,6 +25,9 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   margin: 20px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Img = styled.img`
@@ -40,12 +43,20 @@ const Content = styled.div`
   width: 65%;
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ font: number }>`
   font-size: ${(props) => props.font || 12}px;
   line-height: 1.5em;
 `;
 
-const News: React.FC<Article> = ({ item }) => {
+interface NewsProps {
+  data: Article[] | null;
+}
+
+interface CardProps {
+  item: Article;
+}
+
+const News = ({ item }: CardProps) => {
   return (
     <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
@@ -58,11 +69,14 @@ const News: React.FC<Article> = ({ item }) => {
   );
 };
 
-const NewsList: React.FC<Welcome> = ({ data }) => {
+const NewsList: React.FC<NewsProps> = ({ data }) => {
   return (
     <Wrapper>
       <Container>
-        {data && data.map((item, idx) => <News key={item.url} item={item} />)}
+        {data &&
+          data.map((item, idx) => (
+            <News key={`news-card-${idx}`} item={item} />
+          ))}
       </Container>
     </Wrapper>
   );
