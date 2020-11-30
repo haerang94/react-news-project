@@ -34,7 +34,7 @@ const Content = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: ${(props) => props.font}px;
+  font-size: ${(props) => props.font || 12}px;
   line-height: 1.5em;
 `;
 
@@ -46,7 +46,7 @@ const News: React.FC = ({ item }) => {
         <Text font={14}>{item.title}</Text>
         {/* <Text>{item.description && item.description.substr(0, 10)}...</Text> */}
         {item.author && <Text font={12}>기자: {item.author}</Text>}
-        <Text font={10}>출처: {item.source.name}</Text>
+        <Text font={11}>출처: {item.source.name}</Text>
       </Content>
     </Wrapper>
   );

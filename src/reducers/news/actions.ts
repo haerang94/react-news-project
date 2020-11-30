@@ -1,5 +1,5 @@
 import { createAsyncAction } from "typesafe-actions";
-import { Welcome } from "utils/api";
+import { Welcome } from "types/article";
 import { AxiosError } from "axios";
 
 export const GET_NEWS = "news/GET_NEWS";

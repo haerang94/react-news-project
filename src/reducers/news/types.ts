@@ -1,6 +1,6 @@
 import * as actions from "reducers/news/actions";
 import { ActionType } from "typesafe-actions";
-import { Welcome } from "utils/api";
+import { Welcome } from "types/article";
 
 export type NewsAction = ActionType<typeof actions>;
 
