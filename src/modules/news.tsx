@@ -5,7 +5,7 @@ export const getNews = () => ({ type: GET_NEWS });
 type newsAction = ReturnType<typeof getNews>;
 
 type newsState = {
-  news: Array<any>;
+  news: any[];
 };
 
 const initialState: newsState = {
