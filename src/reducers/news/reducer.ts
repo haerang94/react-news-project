@@ -4,6 +4,7 @@ import {
   GET_NEWS,
   GET_NEWS_SUCCESS,
   GET_NEWS_ERROR,
+  SET_KEYWORD,
 } from "reducers/news/actions";
 
 const initialState: NewsState = {
@@ -12,6 +13,7 @@ const initialState: NewsState = {
     error: null,
     data: null,
   },
+  text: null,
 };
 
 const news = createReducer<NewsState, NewsAction>(initialState, {
@@ -39,6 +41,12 @@ const news = createReducer<NewsState, NewsAction>(initialState, {
       data: null,
     },
   }),
+  [SET_KEYWORD]: (state, action) => {
+    return {
+      ...state,
+      text: action.payload,
+    };
+  },
 });
 
 export default news;

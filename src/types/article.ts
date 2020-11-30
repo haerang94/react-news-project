@@ -1,5 +1,6 @@
 export interface Welcome {
   articles: Article[];
+  data?: Article[];
 }
 
 export interface Article {
@@ -9,7 +10,7 @@ export interface Article {
   description: string;
   url: string;
   urlToImage: string;
-  publishedAt: Date;
+  publishedAt: Date | any;
   content: null | string;
 }
 

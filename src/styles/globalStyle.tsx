@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
       font-size:12px;
     }
     body{
+        min-width:700px;
         padding:30px;
         width:100%;
         height:100%;

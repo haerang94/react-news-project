@@ -6,9 +6,12 @@ import NewsList from "components/NewsList";
 import Search from "components/Search";
 
 const NewsContainer: React.FC = () => {
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.news.news
-  );
+  const { data, loading, error, keyword } = useSelector((state: RootState) => ({
+    data: state.news.news.data,
+    loading: state.news.news.loading,
+    error: state.news.news.error,
+    keyword: state.news.text,
+  }));
 
   const dispatch = useDispatch();
 
@@ -19,15 +22,9 @@ const NewsContainer: React.FC = () => {
     onFetch();
   }, [dispatch]);
 
-  console.log(data);
   if (loading) return <div>로딩중...</div>;
   if (error) return <div>에러남</div>;
-  return (
-    <>
-      <Search />
-      <NewsList data={data} />
-    </>
-  );
+  return <NewsList data={data} />;
 };
 
 export default NewsContainer;
