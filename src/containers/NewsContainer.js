@@ -15,16 +15,13 @@ const NewsContainer: React.FC = () => {
     const onFetch = () => {
       dispatch(getNewsThunk());
     };
-    // const response = await axios.get(
-    //   `https://newsapi.org/v2/top-headlines?apiKey=09309de8c1bc4bda8cac59f36deb633c&country=kr`
-    // );
-    // console.log(response);
     onFetch();
-  }, []);
+  }, [dispatch]);
 
   console.log(data);
-
-  return <div></div>;
+  if (loading) return <div>로딩중...</div>;
+  if (error) return <div>에러남</div>;
+  return <div>성공</div>;
 };
 
 export default NewsContainer;
