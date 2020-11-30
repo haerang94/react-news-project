@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import no_image from "images/no_image.png";
-import { Article, Welcome } from "types/article";
+import { Article } from "types/article";
+import { NewStar, NewStarFill } from "components/sharedComponents";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -20,14 +21,17 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
   min-width: 194px;
   width: 45%;
   display: flex;
   align-items: center;
-  margin: 20px;
+  padding: 20px;
+  box-shadow: 2px 2px 2px #ddd;
   &:hover {
     cursor: pointer;
   }
+  margin-bottom: 20px;
 `;
 
 const Img = styled.img`
@@ -49,6 +53,7 @@ const Text = styled.div<{ font: number }>`
 `;
 
 interface NewsProps {
+  // 처음의 data가 null일 수도 있다.
   data: Article[] | null;
 }
 
@@ -59,6 +64,7 @@ interface CardProps {
 const News = ({ item }: CardProps) => {
   return (
     <Card>
+      <NewStar />
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
         <Text font={14}>{item.title}</Text>
