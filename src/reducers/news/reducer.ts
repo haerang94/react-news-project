@@ -6,13 +6,11 @@ import {
   GET_NEWS_ERROR,
 } from "reducers/news/actions";
 
-console.log(GET_NEWS);
-
 const initialState: NewsState = {
   news: {
     loading: false,
     error: null,
-    data: "news",
+    data: null,
   },
 };
 

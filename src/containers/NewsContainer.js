@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "reducers";
 import { getNewsThunk } from "reducers/news";
+import NewsList from "components/NewsList";
 
 const NewsContainer: React.FC = () => {
   const { data, loading, error } = useSelector(
@@ -21,7 +21,7 @@ const NewsContainer: React.FC = () => {
   console.log(data);
   if (loading) return <div>로딩중...</div>;
   if (error) return <div>에러남</div>;
-  return <div>성공</div>;
+  return <NewsList data={data} />;
 };
 
 export default NewsContainer;
