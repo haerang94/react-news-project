@@ -1,16 +1,10 @@
-const theme = {
+import { DefaultTheme } from "styled-components";
+const theme: DefaultTheme = {
   color: {
     blue: "#334FF0",
-    lightBlue: "#f1f6f9",
     middleBlue: "#79DFF4",
-    mint: "#ACEAF1",
     lightGray: "#e8e8e8",
-    gray: "#bbbfca",
-    pink: "#fa7f72",
-    beige: "#fff5ea",
     carrot: "#f5a25d",
-    yellow: "#fcf876",
-    yellowBlue: "#3797a4",
   },
   size: {
     sm: "5px",

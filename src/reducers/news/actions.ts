@@ -11,13 +11,3 @@ export const getNewsAsync = createAsyncAction(
   GET_NEWS_SUCCESS,
   GET_NEWS_ERROR
 )<any, Welcome, AxiosError>();
-
-// export const getNewsAsync = createAction(GET_NEWS)<Article>();
-
-// export const getNewsAsync = (data: Article) => {
-//   console.log(data);
-//   return {
-//     type: GET_NEWS,
-//     payload: data,
-//   };
-// };
