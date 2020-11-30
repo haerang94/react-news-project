@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export const getNews = () => {
-  const response = axios.get<Welcome>(
-    `https://newsapi.org/v2/top-headlines?apiKey=${process.env.REACT_APP_API_KEY}&country=kr`
+export const getNews = async () => {
+  const response = await axios.get<Welcome>(
+    `https://newsapi.org/v2/top-headlines?apiKey=09309de8c1bc4bda8cac59f36deb633c&country=kr`
   );
-  return response;
+  console.log(response.data);
+  return response.data;
 };
 export interface Welcome {
   status: string;

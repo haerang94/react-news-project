@@ -6,15 +6,13 @@ import {
   GET_NEWS_ERROR,
 } from "reducers/news/actions";
 
-// export const GET_NEWS = "news/GET_NEWS" as const;
-// export const GET_NEWS_SUCCESS = "news/GET_NEWS_SUCCESS" as const;
-// export const GET_NEWS_ERROR = "news/GET_NEWS_ERROR" as const;
+console.log(GET_NEWS);
 
 const initialState: NewsState = {
   news: {
     loading: false,
     error: null,
-    data: null,
+    data: "news",
   },
 };
 
