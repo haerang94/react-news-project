@@ -36,8 +36,8 @@ const Card = styled.div`
 `;
 
 const Img = styled.img`
-  width: 130px;
-  height: 120px;
+  width: 140px;
+  height: 130px;
   border-radius: 6px;
   margin-right: 10px;
 `;
