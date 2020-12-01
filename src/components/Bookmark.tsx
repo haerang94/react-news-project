@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NewsList from "components/NewsList";
 import { Article } from "types/article";
@@ -17,7 +17,7 @@ const Container = styled.div`
   flex-direction: column;
   top: 100px;
   z-index: 10;
-  background: gray;
+  background: #ddd;
 `;
 
 const Edit = styled.textarea`
@@ -25,12 +25,14 @@ const Edit = styled.textarea`
   margin-bottom: 10px;
   width: 500px;
   height: 400px;
+  resize: none;
 `;
 
 const NewButton = styled(Button)`
   width: 70px;
   margin-left: auto;
   margin-right: 30px;
+  display: ${(props) => (props.onEdit ? "visible" : "none")};
 `;
 
 interface Props {
@@ -39,11 +41,17 @@ interface Props {
 }
 
 const Bookmark = ({ mark, makeBookMark }: Props) => {
+  const [onEdit, setOnEdit] = useState(false);
+  const toggleEdit = () => {
+    setOnEdit((onEdit) => !onEdit);
+  };
   return (
     <Wrapper>
       <Container>
         <Edit />
-        <NewButton>Done</NewButton>
+        <NewButton onEdit={onEdit} onClick={toggleEdit}>
+          Done
+        </NewButton>
       </Container>
       <NewsList
         data={mark}
