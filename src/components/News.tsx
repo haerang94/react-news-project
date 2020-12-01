@@ -62,43 +62,50 @@ interface CardProps {
   makeBookMark: (value: Article) => void;
   mark: Article[];
   editable?: boolean;
+  toggleEdit?: () => void;
 }
 
-const News = React.memo(({ item, makeBookMark, mark, editable }: CardProps) => {
-  const checked =
-    mark.findIndex((x) => x.url === item.url) === -1 ? true : false;
+const News = React.memo(
+  ({ item, makeBookMark, mark, editable, toggleEdit }: CardProps) => {
+    const checked =
+      mark.findIndex((x) => x.url === item.url) === -1 ? true : false;
 
-  const onClick = useCallback((link: string) => {
-    window.open(link, "_blank");
-  }, []);
-  const shorterText = useCallback((text: string, len: number) => {
-    if (text.length > len) return `${text.slice(0, len)}...`;
-    else return text;
-  }, []);
+    const onClick = useCallback((link: string) => {
+      window.open(link, "_blank");
+    }, []);
+    const shorterText = useCallback((text: string, len: number) => {
+      if (text.length > len) return `${text.slice(0, len)}...`;
+      else return text;
+    }, []);
 
-  return (
-    <>
-      <Card>
-        <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
-        <Content>
-          {checked ? (
-            <NewStar onClick={() => makeBookMark(item)} />
-          ) : (
-            <NewStarFill onClick={() => makeBookMark(item)} />
-          )}
-          {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
-          {item.content && (
-            <Text font={12}>{shorterText(item.content, 50)}</Text>
-          )}
-          {item.author && <Text font={12}>Author: {item.author}</Text>}
-          <Text font={11}>Source: {item.source.name}</Text>
-          <Text font={11}>Created: {dayjs().to(dayjs(item.publishedAt))}</Text>
-        </Content>
-        <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
-      </Card>
-      {editable && <Edit />}
-    </>
-  );
-});
+    return (
+      <>
+        <Card>
+          <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
+          <Content>
+            {checked ? (
+              <NewStar onClick={() => makeBookMark(item)} />
+            ) : (
+              <NewStarFill onClick={() => makeBookMark(item)} />
+            )}
+            {item.title && (
+              <Text font={14}>{shorterText(item.title, 100)}</Text>
+            )}
+            {item.content && (
+              <Text font={12}>{shorterText(item.content, 50)}</Text>
+            )}
+            {item.author && <Text font={12}>Author: {item.author}</Text>}
+            <Text font={11}>Source: {item.source.name}</Text>
+            <Text font={11}>
+              Created: {dayjs().to(dayjs(item.publishedAt))}
+            </Text>
+          </Content>
+          <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
+        </Card>
+        {editable && <Edit onClick={toggleEdit} />}
+      </>
+    );
+  }
+);
 
 export default News;

@@ -11,13 +11,14 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ onEdit: boolean }>`
   position: absolute;
   display: flex;
   flex-direction: column;
   top: 100px;
   z-index: 10;
   background: #ddd;
+  display: ${(props) => (props.onEdit ? "visible" : "none")};
 `;
 
 const Edit = styled.textarea`
@@ -32,32 +33,28 @@ const NewButton = styled(Button)`
   width: 70px;
   margin-left: auto;
   margin-right: 30px;
-  display: ${(props) => (props.onEdit ? "visible" : "none")};
 `;
 
 interface Props {
   makeBookMark: (value: Article) => void;
   mark: Article[];
+  onEdit: boolean;
+  toggleEdit: () => void;
 }
 
-const Bookmark = ({ mark, makeBookMark }: Props) => {
-  const [onEdit, setOnEdit] = useState(false);
-  const toggleEdit = () => {
-    setOnEdit((onEdit) => !onEdit);
-  };
+const Bookmark = ({ mark, makeBookMark, onEdit, toggleEdit }: Props) => {
   return (
     <Wrapper>
-      <Container>
+      <Container onEdit={onEdit}>
         <Edit />
-        <NewButton onEdit={onEdit} onClick={toggleEdit}>
-          Done
-        </NewButton>
+        <NewButton onClick={toggleEdit}>Done</NewButton>
       </Container>
       <NewsList
         data={mark}
         mark={mark}
         makeBookMark={makeBookMark}
         editable={true}
+        toggleEdit={toggleEdit}
       />
     </Wrapper>
   );
