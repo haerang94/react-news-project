@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -30,23 +30,29 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
+interface Props {
+  logged: string | null;
+  setLogged: (id: string | null) => void;
+}
 
-const Header = () => {
-  const id = localStorage.getItem("id");
+const Header = ({ logged, setLogged }: Props) => {
   const history = useHistory();
-  const goLogin = () => {
+  // 로그인 탭 이동
+  const goLogin = useCallback(() => {
     history.push("/login");
-  };
-  const resetLogin = () => {
+  }, [history]);
+  //  로그아웃하기
+  const resetLogin = useCallback(() => {
     localStorage.setItem("id", "");
     localStorage.setItem("password", "");
     localStorage.setItem("bookmark", "");
-    history.push("/");
-  };
-
-  const goToBookmark = () => {
+    setLogged(null);
+    // history.push("/");
+  }, [setLogged]);
+  //  즐겨찾기 탭 이동
+  const goToBookmark = useCallback(() => {
     history.push("/bookmark");
-  };
+  }, [history]);
 
   return (
     <NavBar>
@@ -58,8 +64,8 @@ const Header = () => {
         React News Web
       </Logo>
       <div>
-        {id && <Button onClick={resetLogin}>LogOut</Button>}
-        {!id && <Button onClick={goLogin}>Login</Button>}
+        {logged && <Button onClick={resetLogin}>LogOut</Button>}
+        {!logged && <Button onClick={goLogin}>Login</Button>}
         <Button onClick={goToBookmark}>Bookmark</Button>
       </div>
     </NavBar>
