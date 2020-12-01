@@ -12,7 +12,14 @@ const NewsContainer = React.memo(() => {
 
   if (loading) return <div>로딩중...</div>;
   if (error) return <div>에러남</div>;
-  return <NewsList data={data} makeBookMark={makeBookMark} mark={mark} />;
+  return (
+    <NewsList
+      data={data}
+      makeBookMark={makeBookMark}
+      mark={mark}
+      toggleEdit={() => {}}
+    />
+  );
 });
 
 export default NewsContainer;

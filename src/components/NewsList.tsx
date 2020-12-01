@@ -28,11 +28,12 @@ interface NewsProps {
   makeBookMark: (value: Article) => void;
   mark: any[];
   editable?: boolean;
-  toggleEdit?: () => void;
+  toggleEdit: (text: any) => void;
+  content?: string;
 }
 
 const NewsList = React.memo(
-  ({ data, makeBookMark, mark, editable, toggleEdit }: NewsProps) => {
+  ({ data, makeBookMark, mark, editable, toggleEdit, content }: NewsProps) => {
     return (
       <Wrapper>
         <Container>
@@ -45,6 +46,7 @@ const NewsList = React.memo(
                 mark={mark}
                 editable={editable}
                 toggleEdit={toggleEdit}
+                content={content}
               />
             ))}
         </Container>

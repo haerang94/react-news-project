@@ -39,25 +39,29 @@ interface Props {
   makeBookMark: (value: Article) => void;
   mark: Article[];
   onEdit: boolean;
-  toggleEdit: () => void;
+  toggleEdit: (text: any) => void;
+  content: string;
 }
 
-const Bookmark = ({ mark, makeBookMark, onEdit, toggleEdit }: Props) => {
-  return (
-    <Wrapper>
-      <Container edit={onEdit}>
-        <Edit />
-        <NewButton onClick={toggleEdit}>Done</NewButton>
-      </Container>
-      <NewsList
-        data={mark}
-        mark={mark}
-        makeBookMark={makeBookMark}
-        editable={true}
-        toggleEdit={toggleEdit}
-      />
-    </Wrapper>
-  );
-};
+const Bookmark = React.memo(
+  ({ mark, makeBookMark, onEdit, toggleEdit, content }: Props) => {
+    return (
+      <Wrapper>
+        <Container edit={onEdit}>
+          <Edit value={content} />
+          <NewButton onClick={toggleEdit}>Done</NewButton>
+        </Container>
+        <NewsList
+          data={mark}
+          mark={mark}
+          makeBookMark={makeBookMark}
+          editable={true}
+          toggleEdit={(x) => toggleEdit(x)}
+          content={content}
+        />
+      </Wrapper>
+    );
+  }
+);
 
 export default Bookmark;

@@ -4,8 +4,10 @@ import useBookmark from "customHooks/useBookmark";
 const BookmarkContainer = () => {
   const { makeBookMark, mark } = useBookmark();
   const [onEdit, setOnEdit] = useState(false);
-  const toggleEdit = () => {
+  const [content, setContent] = useState("");
+  const toggleEdit = (text: string) => {
     setOnEdit((onEdit) => !onEdit);
+    setContent(text);
   };
   return (
     <Bookmark
@@ -13,6 +15,7 @@ const BookmarkContainer = () => {
       makeBookMark={makeBookMark}
       onEdit={onEdit}
       toggleEdit={toggleEdit}
+      content={content}
     ></Bookmark>
   );
 };
