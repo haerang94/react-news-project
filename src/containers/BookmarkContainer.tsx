@@ -1,6 +1,8 @@
 import React, { useState, ChangeEvent, useCallback } from "react";
 import Bookmark from "components/Bookmark";
 import useBookmark from "customHooks/useBookmark";
+
+// 북마크 페이지 컨테이너
 const BookmarkContainer = () => {
   const { makeBookMark, mark, editBookmark } = useBookmark();
   const [onEdit, setOnEdit] = useState(false);

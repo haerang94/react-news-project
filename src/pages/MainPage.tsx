@@ -4,6 +4,7 @@ import NewsContainer from "containers/NewsContainer";
 import SearchContainer from "containers/SearchContainer";
 import PageContainer from "containers/PageContainer";
 import HeaderContainer from "containers/HeaderContainer";
+import FilterContainer from "containers/FilterContainer";
 
 const PageWrapper = styled.section`
   width: 100%;
@@ -17,6 +18,7 @@ const MainPage = React.memo(() => {
     <PageWrapper>
       <HeaderContainer />
       <SearchContainer />
+      <FilterContainer />
       <NewsContainer />
       <PageContainer />
     </PageWrapper>

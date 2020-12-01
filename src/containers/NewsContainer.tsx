@@ -3,6 +3,7 @@ import NewsList from "components/NewsList";
 import useNews from "customHooks/useNews";
 import useBookmark from "customHooks/useBookmark";
 
+//  뉴스 카드 정보 컨테이너
 const NewsContainer = React.memo(() => {
   const { data, loading, error, onFetchNews } = useNews();
   const { makeBookMark, mark } = useBookmark();
