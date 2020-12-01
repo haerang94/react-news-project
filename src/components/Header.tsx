@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = styled.header`
@@ -27,10 +27,14 @@ const Button = styled.button`
 `;
 
 const Header = () => {
+  const history = useHistory();
+  const goLogin = () => {
+    history.push("/login");
+  };
   return (
     <NavBar>
       <Logo>React News Web</Logo>
-      <Button>Login</Button>
+      <Button onClick={goLogin}>Login</Button>
     </NavBar>
   );
 };
