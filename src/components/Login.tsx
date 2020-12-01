@@ -30,6 +30,8 @@ const Input = styled.input`
   height: 30px;
   padding: 10px;
   margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid black;
 `;
 
 const NewButton = styled(Button)`
@@ -45,24 +47,27 @@ interface Props {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const Login = ({ id, password, message, onChange, onSubmit }: Props) => {
-  return (
-    <Wrapper>
-      <Form>
-        <Label htmlFor="id">ID</Label>
-        <Input name="id" id="id" placeholder="id" />
-        <Label htmlFor="password">PASSWORD</Label>
-        <Input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="password"
-        />
-        {message && <div>{message}</div>}
-        <NewButton>Login</NewButton>
-      </Form>
-    </Wrapper>
-  );
-};
+const Login = React.memo(
+  ({ id, password, message, onChange, onSubmit }: Props) => {
+    return (
+      <Wrapper>
+        <Form>
+          <Label htmlFor="id">ID</Label>
+          <Input name="id" id="id" placeholder="id" onChange={onChange} />
+          <Label htmlFor="password">PASSWORD</Label>
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+            onChange={onChange}
+          />
+          {message && <div>{message}</div>}
+          <NewButton>Login</NewButton>
+        </Form>
+      </Wrapper>
+    );
+  }
+);
 
 export default Login;

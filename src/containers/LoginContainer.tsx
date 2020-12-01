@@ -2,7 +2,7 @@ import React from "react";
 import Login from "components/Login";
 import useInputs from "customHooks/useInputs";
 
-const LoginContainer = () => {
+const LoginContainer = React.memo(() => {
   const { form, onChange, onSubmit } = useInputs();
   const { id, password, message } = form;
   console.log(id, password);
@@ -15,6 +15,6 @@ const LoginContainer = () => {
       onSubmit={onSubmit}
     ></Login>
   );
-};
+});
 
 export default LoginContainer;
