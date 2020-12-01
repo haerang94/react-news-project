@@ -14,7 +14,7 @@ const FilterContainer = () => {
   };
   //  출처 초성 순 정렬
   const sortBySource = (a: Article, b: Article) => {
-    return a.source > b.source ? 1 : -1;
+    return a.source.name > b.source.name ? 1 : -1;
   };
 
   const onChange = useCallback(
@@ -34,7 +34,7 @@ const FilterContainer = () => {
   //   if (data) {
   //     console.log(data.sort(date_descending));
   //   }
-  console.log(sort);
+  console.log(data);
   return <Filter onChange={onChange}></Filter>;
 };
 
