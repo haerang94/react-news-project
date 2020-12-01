@@ -17,6 +17,9 @@ const NavBar = styled.header`
 const Logo = styled.div`
   font-size: ${(props) => props.theme.size.lg};
   margin-right: 20px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Button = styled.button`
