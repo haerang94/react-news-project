@@ -42,13 +42,23 @@ const Header = () => {
     history.push("/");
   };
 
+  const goToBookmark = () => {
+    history.push("/bookmark");
+  };
+
   return (
     <NavBar>
-      <Logo>React News Web</Logo>
+      <Logo
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        React News Web
+      </Logo>
       <div>
         {id && <Button onClick={resetLogin}>LogOut</Button>}
         {!id && <Button onClick={goLogin}>Login</Button>}
-        <Button>Bookmark</Button>
+        <Button onClick={goToBookmark}>Bookmark</Button>
       </div>
     </NavBar>
   );
