@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
@@ -74,19 +74,30 @@ interface CardProps {
 }
 
 const News = ({ item }: CardProps) => {
-  const onClick = (link: string) => {
+  const [bookmark, setBookmark] = useState([]);
+
+  useEffect(() => {
+    const storedBook = localStorage.getItem("bookmark");
+    console.log("book", storedBook);
+    if (storedBook !== null) {
+      // setBookmark(storedBook);
+    }
+  }, []);
+
+  const onClick = useCallback((link: string) => {
     window.open(link, "_blank");
-  };
-  const shorterText = (text: string, len: number) => {
+  }, []);
+  const shorterText = useCallback((text: string, len: number) => {
     if (text.length > len) return `${text.slice(0, len)}...`;
     else return text;
-  };
+  }, []);
+  const toggleBookmark = useCallback(() => {}, []);
 
   return (
     <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
-        <NewStar />
+        <NewStar onClick={toggleBookmark} />
         {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
         {item.content && <Text font={12}>{shorterText(item.content, 50)}</Text>}
         {item.author && <Text font={12}>Author: {item.author}</Text>}

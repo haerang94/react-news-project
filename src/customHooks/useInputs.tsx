@@ -25,6 +25,7 @@ function useInputs() {
       alert("로그인되었습니다.");
       localStorage.setItem("id", form.id);
       localStorage.setItem("password", form.password);
+      localStorage.setItem("bookmark", JSON.stringify([]));
     }
   };
 
