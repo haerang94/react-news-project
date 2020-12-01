@@ -5,6 +5,13 @@ export default function useBookmark() {
 
   const makeBookMark = useCallback(
     (value) => {
+      const id = localStorage.getItem("id");
+      console.log(id);
+      if (!id) {
+        alert("로그인한 후 즐겨찾기를 할 수 있습니다.");
+        return;
+      }
+
       const idx = mark.findIndex((x) => x.url === value.url);
       if (idx === -1) {
         setMark([...mark, value]);
