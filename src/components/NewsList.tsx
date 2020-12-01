@@ -3,6 +3,7 @@ import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
 import { NewStar, NewStarFill, Button } from "components/sharedComponents";
+import produce from "immer";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 dayjs.extend(relativeTime);
@@ -71,11 +72,10 @@ interface NewsProps {
 
 interface CardProps {
   item: Article;
+  makeBookMark: (value: Article) => void;
 }
 
-const News = ({ item }: CardProps) => {
-  const [bookmark, setBookmark] = useState<any[]>([]);
-
+const News = React.memo(({ item, makeBookMark }: CardProps) => {
   const onClick = useCallback((link: string) => {
     window.open(link, "_blank");
   }, []);
@@ -83,28 +83,12 @@ const News = ({ item }: CardProps) => {
     if (text.length > len) return `${text.slice(0, len)}...`;
     else return text;
   }, []);
-  const toggleBookmark = useCallback(
-    (url) => {
-      const idx = bookmark.findIndex((book) => book.url === url);
-      console.log(idx);
-    },
-    [bookmark]
-  );
-
-  useEffect(() => {
-    const storedBook = localStorage.getItem("bookmark");
-    if (storedBook) {
-      setBookmark(JSON.parse(storedBook));
-    } else {
-      setBookmark([]);
-    }
-  }, []);
 
   return (
     <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
-        <NewStar onClick={() => toggleBookmark(item.url)} />
+        <NewStar onClick={() => makeBookMark(item)} />
         {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
         {item.content && <Text font={12}>{shorterText(item.content, 50)}</Text>}
         {item.author && <Text font={12}>Author: {item.author}</Text>}
@@ -114,19 +98,30 @@ const News = ({ item }: CardProps) => {
       <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
     </Card>
   );
-};
+});
 
-const NewsList: React.FC<NewsProps> = ({ data }) => {
+const NewsList: React.FC<NewsProps> = React.memo(({ data }) => {
+  const [mark, setMark] = useState<any[]>([]);
+
+  const makeBookMark = (value) => {
+    setMark([...mark, value]);
+  };
+  console.log(mark);
+
   return (
     <Wrapper>
       <Container>
         {data &&
           data.map((item, idx) => (
-            <News key={`news-card-${idx}`} item={item} />
+            <News
+              key={`news-card-${idx}`}
+              item={item}
+              makeBookMark={makeBookMark}
+            />
           ))}
       </Container>
     </Wrapper>
   );
-};
+});
 
 export default NewsList;
