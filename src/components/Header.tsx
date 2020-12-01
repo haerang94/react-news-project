@@ -3,12 +3,13 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = styled.header`
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: black;
   color: #fff;
-  width: 100%;
+
   height: 70px;
   padding: 0 20px;
 `;
