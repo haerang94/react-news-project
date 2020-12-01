@@ -52,7 +52,7 @@ interface Props {
 const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  // const totalPage = calculate(totalResults);
+  const totalPage = calculate(totalResults);
 
   const onClickLeft = () => {
     if (page === 1) return;
@@ -61,7 +61,7 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
 
   const onClickRight = () => {
     // developer api 한계상 16페이지 이상(한 페이지당 6개) 못불러와서 제한했습니다.
-    // if (page + 5 > totalPage) return;
+    if (page + 5 > totalPage) return;
     if (page + 5 > 16) return;
     setPage((page) => page + 5);
   };
@@ -79,7 +79,7 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
       <Left onClick={onClickLeft} />
       {Array.from(Array(5), (_, idx) => {
         // if (page + idx <= totalPage)
-        if (page + idx <= 16)
+        if (page + idx <= 16 && page + idx <= totalPage)
           return (
             <NewButton
               key={`page-btn-${idx}`}
