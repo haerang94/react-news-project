@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "components/sharedComponents";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -15,7 +16,7 @@ const Form = styled.form`
   min-height: 400px;
   padding: 20px;
   & > * {
-    margin: 10px 0;
+    margin: 5px 0;
   }
 `;
 
@@ -28,6 +29,11 @@ const Input = styled.input`
   width: 300px;
   height: 30px;
   padding: 10px;
+`;
+
+const NewButton = styled(Button)`
+  width: 100px;
+  margin-left: auto;
 `;
 
 const Login = () => {
@@ -43,6 +49,7 @@ const Login = () => {
           id="password"
           placeholder="password"
         />
+        <NewButton>Login</NewButton>
       </Form>
     </Wrapper>
   );
