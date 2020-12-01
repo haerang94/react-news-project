@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useCallback } from "react";
 import styled from "styled-components";
 import { Button } from "components/sharedComponents";
+import { useHistory } from "react-router-dom";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -54,9 +55,18 @@ interface Props {
 
 const Login = React.memo(
   ({ id, password, message, onChange, onSubmit }: Props) => {
+    const history = useHistory();
+    const onSubmitLogin = useCallback(
+      (e: FormEvent<HTMLFormElement>) => {
+        onSubmit(e);
+        history.push("/");
+      },
+      [onSubmit, history]
+    );
+
     return (
       <Wrapper>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={onSubmitLogin}>
           <Label htmlFor="id">ID</Label>
           <Input
             name="id"

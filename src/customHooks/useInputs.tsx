@@ -16,11 +16,15 @@ function useInputs() {
     console.log(form.id, form.password);
     if (form.id !== "alyce") {
       setForm((form) => ({ ...form, message: "아이디가 다릅니다." }));
+      return;
     } else if (form.password !== "alyce123") {
       setForm((form) => ({ ...form, message: "비밀번호가 다릅니다." }));
+      return;
     } else {
       setForm((form) => initialForm);
       alert("로그인되었습니다.");
+      localStorage.setItem("id", form.id);
+      localStorage.setItem("password", form.password);
     }
   };
 
