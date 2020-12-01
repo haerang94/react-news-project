@@ -75,7 +75,10 @@ interface CardProps {
   mark: any[];
 }
 
-const News = React.memo(({ item, makeBookMark }: CardProps) => {
+const News = React.memo(({ item, makeBookMark, mark }: CardProps) => {
+  const checked =
+    mark.findIndex((x) => x.url === item.url) === -1 ? true : false;
+
   const onClick = useCallback((link: string) => {
     window.open(link, "_blank");
   }, []);
@@ -88,7 +91,11 @@ const News = React.memo(({ item, makeBookMark }: CardProps) => {
     <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
-        <NewStar onClick={() => makeBookMark(item)} />
+        {checked ? (
+          <NewStar onClick={() => makeBookMark(item)} />
+        ) : (
+          <NewStarFill onClick={() => makeBookMark(item)} />
+        )}
         {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
         {item.content && <Text font={12}>{shorterText(item.content, 50)}</Text>}
         {item.author && <Text font={12}>Author: {item.author}</Text>}

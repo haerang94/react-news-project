@@ -7,10 +7,11 @@ const NewStar = styled(Star)`
   margin-bottom: 7px;
   width: 20px;
   height: 20px;
-  color: lightGray;
 `;
 
 const NewStarFill = styled(StarFill)`
+  margin-left: auto;
+  margin-bottom: 7px;
   width: 20px;
   height: 20px;
 `;
