@@ -51,7 +51,7 @@ const Text = styled.div<{ font: number | null }>`
 interface CardProps {
   item: Article;
   makeBookMark: (value: Article) => void;
-  mark: any[];
+  mark: Article[];
 }
 
 const News = React.memo(({ item, makeBookMark, mark }: CardProps) => {
