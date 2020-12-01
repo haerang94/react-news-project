@@ -26,6 +26,7 @@ function useInputs() {
       localStorage.setItem("id", form.id);
       localStorage.setItem("password", form.password);
       localStorage.setItem("bookmark", JSON.stringify([]));
+      return true;
     }
   };
 

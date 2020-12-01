@@ -50,16 +50,19 @@ interface Props {
   password: string;
   message: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => true | undefined;
 }
 
 const Login = React.memo(
   ({ id, password, message, onChange, onSubmit }: Props) => {
     const history = useHistory();
+
     const onSubmitLogin = useCallback(
       (e: FormEvent<HTMLFormElement>) => {
-        onSubmit(e);
-        history.push("/");
+        const result = onSubmit(e);
+        if (result) {
+          history.push("/");
+        }
       },
       [onSubmit, history]
     );

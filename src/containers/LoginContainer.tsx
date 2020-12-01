@@ -5,7 +5,9 @@ import useInputs from "customHooks/useInputs";
 const LoginContainer = React.memo(() => {
   const { form, onChange, onSubmit } = useInputs();
   const { id, password, message } = form;
+
   console.log(id, password, "message", message);
+
   return (
     <Login
       id={id}
