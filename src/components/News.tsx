@@ -63,11 +63,10 @@ interface CardProps {
   mark: Article[];
   editable?: boolean;
   toggleEdit: (text: any) => void;
-  content?: string;
 }
 
 const News = React.memo(
-  ({ item, makeBookMark, mark, editable, toggleEdit, content }: CardProps) => {
+  ({ item, makeBookMark, mark, editable, toggleEdit }: CardProps) => {
     const checked =
       mark.findIndex((x) => x.url === item.url) === -1 ? true : false;
 
@@ -103,7 +102,7 @@ const News = React.memo(
           </Content>
           <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
         </Card>
-        {editable && <Edit onClick={() => toggleEdit(item.content)} />}
+        {editable && <Edit onClick={() => toggleEdit(item)} />}
       </>
     );
   }

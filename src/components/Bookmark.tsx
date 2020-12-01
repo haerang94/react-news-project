@@ -57,8 +57,7 @@ const Bookmark = React.memo(
           mark={mark}
           makeBookMark={makeBookMark}
           editable={true}
-          toggleEdit={(x) => toggleEdit(x)}
-          content={content}
+          toggleEdit={toggleEdit}
         />
       </Wrapper>
     );

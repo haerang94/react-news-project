@@ -2,17 +2,24 @@ import React, { useState, ChangeEvent, useCallback } from "react";
 import Bookmark from "components/Bookmark";
 import useBookmark from "customHooks/useBookmark";
 const BookmarkContainer = () => {
-  const { makeBookMark, mark } = useBookmark();
+  const { makeBookMark, mark, editBookmark } = useBookmark();
   const [onEdit, setOnEdit] = useState(false);
   const [content, setContent] = useState("");
-  const toggleEdit = (text: string) => {
+  const [item, setItem] = useState({});
+  const toggleEdit = (cur: any) => {
     setOnEdit((onEdit) => !onEdit);
-    setContent(text);
+    setContent(cur.content);
+    setItem(cur);
   };
-  const onChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setContent(value);
-  }, []);
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const { value } = e.target;
+      setContent(value);
+      editBookmark(item, value);
+      // makeBookMark([...mark,]);
+    },
+    [editBookmark, item]
+  );
   return (
     <Bookmark
       mark={mark}

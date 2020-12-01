@@ -6,7 +6,6 @@ export default function useBookmark() {
   const makeBookMark = useCallback(
     (value) => {
       const id = localStorage.getItem("id");
-      console.log(id);
       if (!id) {
         alert("로그인한 후 즐겨찾기를 할 수 있습니다.");
         return;
@@ -25,6 +24,21 @@ export default function useBookmark() {
     [mark]
   );
 
+  const editBookmark = useCallback(
+    (value, text) => {
+      const idx = mark.findIndex((x) => x.url === value.url);
+      const newList = [...mark];
+      console.log(value, idx);
+      console.log(newList);
+      console.log(newList[idx]);
+      // newList[idx].content = text;
+      // console.log(newList[idx]);
+      // setMark(newList);
+      // localStorage.setItem("bookmark", JSON.stringify(newList));
+    },
+    [mark]
+  );
+
   useEffect(() => {
     const storedBookmarks = localStorage.getItem("bookmark");
     if (storedBookmarks) {
@@ -32,5 +46,5 @@ export default function useBookmark() {
     }
   }, []);
 
-  return { mark, setMark, makeBookMark };
+  return { mark, setMark, makeBookMark, editBookmark };
 }
