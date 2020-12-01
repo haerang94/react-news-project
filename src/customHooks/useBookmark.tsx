@@ -31,8 +31,8 @@ export default function useBookmark() {
       console.log(value, idx);
       console.log(newList);
       console.log(newList[idx]);
-      // newList[idx].content = text;
-      // console.log(newList[idx]);
+      newList[idx].content = text;
+      console.log(newList[idx]);
       // setMark(newList);
       // localStorage.setItem("bookmark", JSON.stringify(newList));
     },
