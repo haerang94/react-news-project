@@ -12,8 +12,7 @@ function useInputs() {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("??");
-    console.log(form.id, form.password);
+
     if (form.id !== "alyce") {
       setForm((form) => ({ ...form, message: "아이디가 다릅니다." }));
       return;

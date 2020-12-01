@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import NewsList from "components/NewsList";
 import { Article } from "types/article";
@@ -41,14 +41,15 @@ interface Props {
   onEdit: boolean;
   toggleEdit: (text: any) => void;
   content: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const Bookmark = React.memo(
-  ({ mark, makeBookMark, onEdit, toggleEdit, content }: Props) => {
+  ({ mark, makeBookMark, onEdit, toggleEdit, content, onChange }: Props) => {
     return (
       <Wrapper>
         <Container edit={onEdit}>
-          <Edit value={content} />
+          <Edit value={content} onChange={onChange} />
           <NewButton onClick={toggleEdit}>Done</NewButton>
         </Container>
         <NewsList
