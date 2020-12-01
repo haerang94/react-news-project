@@ -29,11 +29,6 @@ const Left = styled(LeftArrow)`
   }
 `;
 
-interface Props {
-  totalResults: number | null;
-  onPageMove: (text?: string | null, page?: number) => void;
-  keyword: string | null;
-}
 function calculate(totalResults: number | null) {
   let lastIdx;
   if (totalResults === null) {
@@ -47,10 +42,16 @@ function calculate(totalResults: number | null) {
   return lastIdx;
 }
 
+interface Props {
+  totalResults: number | null;
+  onPageMove: (text: string | null, page?: number) => void;
+  keyword: string | null;
+}
+
 const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPage = calculate(totalResults);
+  // const totalPage = calculate(totalResults);
 
   const onClickLeft = () => {
     if (page === 1) return;
