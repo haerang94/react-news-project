@@ -38,7 +38,7 @@ const Search = ({ onSubmitInput }: Props) => {
   return (
     <Form onSubmit={onSubmit}>
       <Input
-        placeholder="검색어를 입력하세요"
+        placeholder="Search New Keyword"
         value={input}
         onChange={onChange}
       />
