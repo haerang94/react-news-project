@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -17,11 +17,15 @@ const Select = styled.select`
   height: 20px;
 `;
 
-const Filter = () => {
+interface Props {
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+const Filter = ({ onChange }: Props) => {
   return (
     <Wrapper>
       <Label htmlFor="filter">Sort</Label>
-      <Select>
+      <Select onChange={onChange}>
         <option value="date">Date</option>
         <option value="source">Source</option>
       </Select>
