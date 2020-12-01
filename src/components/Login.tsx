@@ -39,10 +39,15 @@ const NewButton = styled(Button)`
   margin-left: auto;
 `;
 
+const Alert = styled.div`
+  font-size: ${(props) => props.theme.size.mmd};
+  color: red;
+`;
+
 interface Props {
   id: string;
   password: string;
-  message: string | null;
+  message: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
@@ -51,9 +56,15 @@ const Login = React.memo(
   ({ id, password, message, onChange, onSubmit }: Props) => {
     return (
       <Wrapper>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <Label htmlFor="id">ID</Label>
-          <Input name="id" id="id" placeholder="id" onChange={onChange} />
+          <Input
+            name="id"
+            id="id"
+            placeholder="id"
+            onChange={onChange}
+            value={id}
+          />
           <Label htmlFor="password">PASSWORD</Label>
           <Input
             type="password"
@@ -61,8 +72,9 @@ const Login = React.memo(
             id="password"
             placeholder="password"
             onChange={onChange}
+            value={password}
           />
-          {message && <div>{message}</div>}
+          {message && <Alert>{message}</Alert>}
           <NewButton>Login</NewButton>
         </Form>
       </Wrapper>
