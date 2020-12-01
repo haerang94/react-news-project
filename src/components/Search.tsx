@@ -26,7 +26,7 @@ interface Props {
 }
 
 const Search = ({ onSubmitInput }: Props) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmitInput(input);

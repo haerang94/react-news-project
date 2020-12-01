@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
 import { Button } from "components/sharedComponents";
 
@@ -29,6 +29,7 @@ const Input = styled.input`
   width: 300px;
   height: 30px;
   padding: 10px;
+  margin-bottom: 10px;
 `;
 
 const NewButton = styled(Button)`
@@ -36,7 +37,15 @@ const NewButton = styled(Button)`
   margin-left: auto;
 `;
 
-const Login = () => {
+interface Props {
+  id: string;
+  password: string;
+  message: string | null;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+}
+
+const Login = ({ id, password, message, onChange, onSubmit }: Props) => {
   return (
     <Wrapper>
       <Form>
@@ -49,6 +58,7 @@ const Login = () => {
           id="password"
           placeholder="password"
         />
+        {message && <div>{message}</div>}
         <NewButton>Login</NewButton>
       </Form>
     </Wrapper>
