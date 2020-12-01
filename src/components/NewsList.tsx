@@ -59,6 +59,9 @@ const MoreButton = styled(Button)`
 const Text = styled.div<{ font: number | null }>`
   font-size: ${(props) => props.font || 12}px;
   line-height: 1.5em;
+  &:nth-of-type(1) {
+    margin-bottom: 10px;
+  }
 `;
 
 interface NewsProps {
