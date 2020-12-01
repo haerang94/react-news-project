@@ -104,9 +104,24 @@ const NewsList: React.FC<NewsProps> = React.memo(({ data }) => {
   const [mark, setMark] = useState<any[]>([]);
 
   const makeBookMark = (value) => {
-    setMark([...mark, value]);
+    const idx = mark.findIndex((x) => x.url === value.url);
+    if (idx === -1) {
+      setMark([...mark, value]);
+      localStorage.setItem("bookmark", JSON.stringify([...mark, value]));
+    } else {
+      const newMarks = mark.filter((x) => x.url !== value.url);
+      setMark(newMarks);
+      localStorage.setItem("bookmark", JSON.stringify(newMarks));
+    }
   };
   console.log(mark);
+
+  useEffect(() => {
+    const storedBookmarks = localStorage.getItem("bookmark");
+    if (storedBookmarks) {
+      setMark(JSON.parse(storedBookmarks));
+    }
+  }, []);
 
   return (
     <Wrapper>
