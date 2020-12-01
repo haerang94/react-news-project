@@ -28,14 +28,23 @@ const Button = styled.button`
 `;
 
 const Header = () => {
+  const id = localStorage.getItem("id");
+  console.log(id);
   const history = useHistory();
   const goLogin = () => {
     history.push("/login");
   };
+  const resetLogin = () => {
+    localStorage.setItem("id", "");
+    localStorage.setItem("password", "");
+    history.push("/");
+  };
+
   return (
     <NavBar>
       <Logo>React News Web</Logo>
-      <Button onClick={goLogin}>Login</Button>
+      {id && <Button onClick={resetLogin}>LogOut</Button>}
+      {!id && <Button onClick={goLogin}>Login</Button>}
     </NavBar>
   );
 };
