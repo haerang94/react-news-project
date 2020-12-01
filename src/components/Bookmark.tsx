@@ -11,7 +11,12 @@ interface Props {
 const Bookmark = ({ mark, makeBookMark }: Props) => {
   return (
     <div>
-      <NewsList data={mark} mark={mark} makeBookMark={makeBookMark} />
+      <NewsList
+        data={mark}
+        mark={mark}
+        makeBookMark={makeBookMark}
+        editable={true}
+      />
     </div>
   );
 };

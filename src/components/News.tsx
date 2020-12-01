@@ -52,9 +52,9 @@ const Text = styled.div<{ font: number | null }>`
 const Edit = styled(EditAlt)`
   width: 20px;
   height: 20px;
-  // position: absolute;
-  // top: 50%;
-  // right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 interface CardProps {
@@ -96,7 +96,7 @@ const News = React.memo(({ item, makeBookMark, mark, editable }: CardProps) => {
         </Content>
         <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
       </Card>
-      <Edit />
+      {editable && <Edit />}
     </>
   );
 });
