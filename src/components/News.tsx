@@ -62,7 +62,7 @@ interface CardProps {
   makeBookMark: (value: Article) => void;
   mark: Article[];
   editable?: boolean;
-  toggleEdit: (text: any) => void;
+  toggleEdit: (arg: any) => void;
 }
 
 const News = React.memo(

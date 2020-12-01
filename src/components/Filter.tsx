@@ -20,7 +20,7 @@ const Select = styled.select`
 interface Props {
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
-
+//  정렬 컴포넌트
 const Filter = ({ onChange }: Props) => {
   return (
     <Wrapper>

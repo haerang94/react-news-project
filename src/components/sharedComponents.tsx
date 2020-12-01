@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Star } from "@styled-icons/bootstrap/Star";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
-
+//  공통 컴포넌트
 const NewStar = styled(Star)`
   margin-left: auto;
   margin-bottom: 7px;

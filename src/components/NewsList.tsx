@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Article } from "types/article";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -26,9 +26,9 @@ interface NewsProps {
   // 처음의 data가 null일 수도 있다.
   data: Article[] | null;
   makeBookMark: (value: Article) => void;
-  mark: any[];
+  mark: Article[];
   editable?: boolean;
-  toggleEdit: (text: string) => void;
+  toggleEdit: (arg: any) => void;
 }
 
 const NewsList = React.memo(
@@ -44,7 +44,7 @@ const NewsList = React.memo(
                 makeBookMark={makeBookMark}
                 mark={mark}
                 editable={editable}
-                toggleEdit={(x) => toggleEdit(x)}
+                toggleEdit={toggleEdit}
               />
             ))}
         </Container>

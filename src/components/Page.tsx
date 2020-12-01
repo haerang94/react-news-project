@@ -48,24 +48,24 @@ interface Props {
   onPageMove: (text: string | null, page?: number) => void;
   keyword: string | null;
 }
-
+//  페이지 버튼 컴포넌트
 const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = calculate(totalResults);
-
+  //  페이지5칸씩 앞으로 이동
   const onClickLeft = () => {
     if (page === 1) return;
     setPage((page) => page - 5);
   };
-
+  //  페이지5칸씩 뒤로 이동
   const onClickRight = () => {
     // developer api 한계상 16페이지 이상(한 페이지당 6개) 못불러와서 제한했습니다.
     if (page + 5 > totalPage) return;
     if (page + 5 > 16) return;
     setPage((page) => page + 5);
   };
-
+  // 누른 페이지로 이동
   const onCurrentPage = useCallback(
     (idx) => {
       onPageMove(keyword, idx);
@@ -78,7 +78,7 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
     <Container>
       <Left onClick={onClickLeft} />
       {Array.from(Array(5), (_, idx) => {
-        // if (page + idx <= totalPage)
+        // 데이터 끝에 도달했을 때
         if (page + idx <= 16 && page + idx <= totalPage)
           return (
             <NewButton

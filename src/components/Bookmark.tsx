@@ -39,11 +39,11 @@ interface Props {
   makeBookMark: (value: Article) => void;
   mark: Article[];
   onEdit: boolean;
-  toggleEdit: (text: any) => void;
+  toggleEdit: (arg: any) => void;
   content: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
-
+//  즐겨찾기 컴포넌트
 const Bookmark = React.memo(
   ({ mark, makeBookMark, onEdit, toggleEdit, content, onChange }: Props) => {
     return (

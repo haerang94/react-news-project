@@ -33,7 +33,6 @@ const Button = styled.button`
 
 const Header = () => {
   const id = localStorage.getItem("id");
-  console.log(id);
   const history = useHistory();
   const goLogin = () => {
     history.push("/login");

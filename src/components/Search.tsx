@@ -24,14 +24,15 @@ const Input = styled.input`
 interface Props {
   onSubmitInput: (text: string) => void;
 }
-
+//  검색 컴포넌트
 const Search = ({ onSubmitInput }: Props) => {
   const [input, setInput] = useState<string>("");
+  //  검색
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmitInput(input);
   };
-
+  //  검색어 타이핑
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
