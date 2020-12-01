@@ -3,7 +3,6 @@ import styled from "styled-components";
 import no_image from "images/no_image.png";
 import { Article } from "types/article";
 import { NewStar, NewStarFill, Button } from "components/sharedComponents";
-import produce from "immer";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 dayjs.extend(relativeTime);
@@ -73,6 +72,7 @@ interface NewsProps {
 interface CardProps {
   item: Article;
   makeBookMark: (value: Article) => void;
+  mark: any[];
 }
 
 const News = React.memo(({ item, makeBookMark }: CardProps) => {
@@ -103,18 +103,20 @@ const News = React.memo(({ item, makeBookMark }: CardProps) => {
 const NewsList: React.FC<NewsProps> = React.memo(({ data }) => {
   const [mark, setMark] = useState<any[]>([]);
 
-  const makeBookMark = (value) => {
-    const idx = mark.findIndex((x) => x.url === value.url);
-    if (idx === -1) {
-      setMark([...mark, value]);
-      localStorage.setItem("bookmark", JSON.stringify([...mark, value]));
-    } else {
-      const newMarks = mark.filter((x) => x.url !== value.url);
-      setMark(newMarks);
-      localStorage.setItem("bookmark", JSON.stringify(newMarks));
-    }
-  };
-  console.log(mark);
+  const makeBookMark = useCallback(
+    (value) => {
+      const idx = mark.findIndex((x) => x.url === value.url);
+      if (idx === -1) {
+        setMark([...mark, value]);
+        localStorage.setItem("bookmark", JSON.stringify([...mark, value]));
+      } else {
+        const newMarks = mark.filter((x) => x.url !== value.url);
+        setMark(newMarks);
+        localStorage.setItem("bookmark", JSON.stringify(newMarks));
+      }
+    },
+    [mark]
+  );
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem("bookmark");
@@ -132,6 +134,7 @@ const NewsList: React.FC<NewsProps> = React.memo(({ data }) => {
               key={`news-card-${idx}`}
               item={item}
               makeBookMark={makeBookMark}
+              mark={mark}
             />
           ))}
       </Container>
