@@ -11,14 +11,14 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Container = styled.div<{ onEdit: boolean }>`
+const Container = styled.div<{ edit: boolean }>`
   position: absolute;
   display: flex;
   flex-direction: column;
   top: 100px;
   z-index: 10;
   background: #ddd;
-  display: ${(props) => (props.onEdit ? "visible" : "none")};
+  display: ${(props) => (props.edit ? "visible" : "none")};
 `;
 
 const Edit = styled.textarea`
@@ -45,7 +45,7 @@ interface Props {
 const Bookmark = ({ mark, makeBookMark, onEdit, toggleEdit }: Props) => {
   return (
     <Wrapper>
-      <Container onEdit={onEdit}>
+      <Container edit={onEdit}>
         <Edit />
         <NewButton onClick={toggleEdit}>Done</NewButton>
       </Container>
