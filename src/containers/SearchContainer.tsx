@@ -4,7 +4,7 @@ import { RootState } from "reducers";
 import Search from "components/Search";
 import { searchNewsThunk } from "reducers/news";
 
-const SearchContainer = () => {
+const SearchContainer = React.memo(() => {
   const { keyword } = useSelector((state: RootState) => ({
     keyword: state.news.text,
   }));
@@ -14,6 +14,6 @@ const SearchContainer = () => {
     dispatch(searchNewsThunk(text));
   };
   return <Search onSubmitInput={onSubmitInput}></Search>;
-};
+});
 
 export default SearchContainer;

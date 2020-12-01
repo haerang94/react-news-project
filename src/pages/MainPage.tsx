@@ -2,7 +2,7 @@ import React from "react";
 import NewsContainer from "containers/NewsContainer";
 import SearchContainer from "containers/SearchContainer";
 import PageContainer from "containers/PageContainer";
-const MainPage = () => {
+const MainPage = React.memo(() => {
   return (
     <div>
       <SearchContainer />
@@ -10,6 +10,6 @@ const MainPage = () => {
       <PageContainer />
     </div>
   );
-};
+});
 
 export default MainPage;
