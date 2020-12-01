@@ -58,7 +58,9 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
   };
 
   const onClickRight = () => {
-    if (page + 5 > totalPage) return;
+    // developer api 한계상 16페이지 이상(한 페이지당 6개) 못불러와서 제한했습니다.
+    // if (page + 5 > totalPage) return;
+    if (page + 5 > 16) return;
     setPage((page) => page + 5);
   };
 
@@ -74,7 +76,8 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
     <Container>
       <Left onClick={onClickLeft} />
       {Array.from(Array(5), (_, idx) => {
-        if (page + idx <= totalPage)
+        // if (page + idx <= totalPage)
+        if (page + idx <= 16)
           return (
             <NewButton
               key={`page-btn-${idx}`}
