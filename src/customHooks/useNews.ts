@@ -25,7 +25,7 @@ export default function useNews() {
     [dispatch]
   );
   const onPageMove = useCallback(
-    (text: string, page: number = 1) => {
+    (text: string | null = keyword, page: number = 1) => {
       dispatch(searchNewsThunk(text, page));
     },
     [dispatch]

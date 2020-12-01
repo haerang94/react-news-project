@@ -10,7 +10,7 @@ export const SET_KEYWORD = "news/SET_KEYWORD";
 export const SET_KEYWORD_SUCCESS = "news/SET_KEYWORD_SUCCESS";
 export const SET_KEYWORD_ERROR = "news/SET_KEYWORD_ERROR";
 
-export const setNewsKeyWord = createAction(SET_KEYWORD)<string>();
+export const setNewsKeyWord = createAction(SET_KEYWORD)<string | null>();
 
 export const getNewsAsync = createAsyncAction(
   GET_NEWS,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import { Button } from "components/sharedComponents";
 import { RightArrow } from "@styled-icons/boxicons-solid/RightArrow";
@@ -31,7 +31,7 @@ const Left = styled(LeftArrow)`
 
 interface Props {
   totalResults: number | null;
-  onPageMove: (text: string, page?: number) => void;
+  onPageMove: (text?: string | null, page?: number) => void;
   keyword: string | null;
 }
 const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
@@ -42,7 +42,12 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
     <Container>
       <Left />
       {Array.from(Array(5), (_, idx) => (
-        <NewButton key={`page-btn-${idx}`}>{page + idx}</NewButton>
+        <NewButton
+          key={`page-btn-${idx}`}
+          onClick={() => onPageMove(keyword, idx)}
+        >
+          {page + idx}
+        </NewButton>
       ))}
       <Right />
     </Container>
