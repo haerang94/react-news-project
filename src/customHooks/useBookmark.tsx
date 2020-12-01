@@ -28,13 +28,9 @@ export default function useBookmark() {
     (value, text) => {
       const idx = mark.findIndex((x) => x.url === value.url);
       const newList = [...mark];
-      console.log(value, idx);
-      console.log(newList);
-      console.log(newList[idx]);
       newList[idx].content = text;
-      console.log(newList[idx]);
-      // setMark(newList);
-      // localStorage.setItem("bookmark", JSON.stringify(newList));
+      setMark(newList);
+      localStorage.setItem("bookmark", JSON.stringify(newList));
     },
     [mark]
   );
