@@ -13,6 +13,7 @@ const initialState: NewsState = {
     error: null,
     data: null,
   },
+  totalResults: null,
   text: null,
 };
 
@@ -30,8 +31,9 @@ const news = createReducer<NewsState, NewsAction>(initialState, {
     news: {
       loading: false,
       error: null,
-      data: action.payload,
+      data: action.payload.articles,
     },
+    totalResults: action.payload.totalResults,
   }),
   [GET_NEWS_ERROR]: (state, action) => ({
     ...state,

@@ -4,7 +4,6 @@ import useNews from "customHooks/useNews";
 
 const NewsContainer = React.memo(() => {
   const { data, loading, error, onFetchNews } = useNews();
-
   useEffect(() => {
     onFetchNews();
   }, [onFetchNews]);

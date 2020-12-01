@@ -11,4 +11,5 @@ export type NewsState = {
     data: Article[] | null;
   };
   text: string | null;
+  totalResults: number | null;
 };

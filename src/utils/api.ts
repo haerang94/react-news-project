@@ -5,7 +5,7 @@ export const getNews = async (page: number = 1) => {
   const response = await axios.get<Welcome>(
     `https://newsapi.org/v2/top-headlines?apiKey=${process.env.REACT_APP_NEWS_API_KEY}&country=us&pageSize=6&page=${page}`
   );
-  return response.data.articles;
+  return response.data;
 };
 
 export const searchNews = async (text: string, page: number = 1) => {
@@ -13,5 +13,5 @@ export const searchNews = async (text: string, page: number = 1) => {
     `https://newsapi.org/v2/everything?apiKey=${process.env.REACT_APP_NEWS_API_KEY}&language=en&q=${text}&pageSize=6&page=${page}`
   );
   console.log(response.data);
-  return response.data.articles;
+  return response.data;
 };
