@@ -24,6 +24,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
   min-width: 500px;
   width: 45%;
   height: 200px;
@@ -43,7 +44,6 @@ const Img = styled.img`
 `;
 
 const Content = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 65%;
@@ -52,7 +52,7 @@ const Content = styled.div`
 
 const MoreButton = styled(Button)`
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   right: 10px;
 `;
 
@@ -92,8 +92,8 @@ const News = ({ item }: CardProps) => {
         {item.author && <Text font={12}>Author: {item.author}</Text>}
         <Text font={11}>Source: {item.source.name}</Text>
         <Text font={11}>Created: {dayjs().to(dayjs(item.publishedAt))}</Text>
-        <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
       </Content>
+      <MoreButton onClick={(e) => onClick(item.url)}>Read More</MoreButton>
     </Card>
   );
 };
