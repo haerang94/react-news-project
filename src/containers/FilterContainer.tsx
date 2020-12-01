@@ -5,7 +5,7 @@ import { Article } from "types/article";
 
 const FilterContainer = () => {
   const [sort, setSort] = useState<string>("");
-  const { data } = useNews();
+  const { data, onSetNews } = useNews();
   //  날짜 최근 순 정렬
   const date_descending = (a: Article, b: Article) => {
     const x = new Date(a.publishedAt).getTime();
@@ -21,20 +21,18 @@ const FilterContainer = () => {
     (e: ChangeEvent<HTMLSelectElement>) => {
       const { value } = e.target;
       setSort(value);
-      if (data && sort === "date") {
+      if (data && value === "date") {
         data.sort(date_descending);
+        onSetNews(data);
       }
-      if (data && sort === "source") {
+      if (data && value === "source") {
         data.sort(sortBySource);
+        onSetNews(data);
       }
     },
-    [data, sort]
+    [data]
   );
 
-  //   if (data) {
-  //     console.log(data.sort(date_descending));
-  //   }
-  console.log(data);
   return <Filter onChange={onChange}></Filter>;
 };
 

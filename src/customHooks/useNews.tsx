@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "reducers";
-import { getNewsThunk, searchNewsThunk } from "reducers/news";
+import { getNewsThunk, searchNewsThunk, setNews } from "reducers/news";
+import { Article } from "types/article";
 
 export default function useNews() {
   const { data, loading, error, keyword, totalResults } = useSelector(
@@ -36,6 +37,13 @@ export default function useNews() {
     [dispatch]
   );
 
+  const onSetNews = useCallback(
+    (sortedData: Article[]) => {
+      dispatch(setNews(sortedData));
+    },
+    [dispatch]
+  );
+
   return {
     data,
     loading,
@@ -45,5 +53,6 @@ export default function useNews() {
     onFetchNews,
     onSubmitInput,
     onPageMove,
+    onSetNews,
   };
 }
