@@ -44,7 +44,7 @@ const Page = React.memo(({ totalResults, onPageMove, keyword }: Props) => {
       {Array.from(Array(5), (_, idx) => (
         <NewButton
           key={`page-btn-${idx}`}
-          onClick={() => onPageMove(keyword, idx)}
+          onClick={() => onPageMove(keyword, page + idx)}
         >
           {page + idx}
         </NewButton>
