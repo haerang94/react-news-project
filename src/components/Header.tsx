@@ -16,6 +16,7 @@ const NavBar = styled.header`
 
 const Logo = styled.div`
   font-size: ${(props) => props.theme.size.lg};
+  margin-right: 20px;
 `;
 
 const Button = styled.button`
@@ -44,8 +45,11 @@ const Header = () => {
   return (
     <NavBar>
       <Logo>React News Web</Logo>
-      {id && <Button onClick={resetLogin}>LogOut</Button>}
-      {!id && <Button onClick={goLogin}>Login</Button>}
+      <div>
+        {id && <Button onClick={resetLogin}>LogOut</Button>}
+        {!id && <Button onClick={goLogin}>Login</Button>}
+        <Button>Bookmark</Button>
+      </div>
     </NavBar>
   );
 };
