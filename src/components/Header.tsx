@@ -37,6 +37,7 @@ const Header = () => {
   const resetLogin = () => {
     localStorage.setItem("id", "");
     localStorage.setItem("password", "");
+    localStorage.setItem("bookmark", "");
     history.push("/");
   };
 

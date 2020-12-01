@@ -74,15 +74,7 @@ interface CardProps {
 }
 
 const News = ({ item }: CardProps) => {
-  const [bookmark, setBookmark] = useState([]);
-
-  useEffect(() => {
-    const storedBook = localStorage.getItem("bookmark");
-    console.log("book", storedBook);
-    if (storedBook !== null) {
-      // setBookmark(storedBook);
-    }
-  }, []);
+  const [bookmark, setBookmark] = useState<any[]>([]);
 
   const onClick = useCallback((link: string) => {
     window.open(link, "_blank");
@@ -91,13 +83,28 @@ const News = ({ item }: CardProps) => {
     if (text.length > len) return `${text.slice(0, len)}...`;
     else return text;
   }, []);
-  const toggleBookmark = useCallback(() => {}, []);
+  const toggleBookmark = useCallback(
+    (url) => {
+      const idx = bookmark.findIndex((book) => book.url === url);
+      console.log(idx);
+    },
+    [bookmark]
+  );
+
+  useEffect(() => {
+    const storedBook = localStorage.getItem("bookmark");
+    if (storedBook) {
+      setBookmark(JSON.parse(storedBook));
+    } else {
+      setBookmark([]);
+    }
+  }, []);
 
   return (
     <Card>
       <Img src={item.urlToImage || no_image} alt="이미지가 없어요ㅠㅠ" />
       <Content>
-        <NewStar onClick={toggleBookmark} />
+        <NewStar onClick={() => toggleBookmark(item.url)} />
         {item.title && <Text font={14}>{shorterText(item.title, 100)}</Text>}
         {item.content && <Text font={12}>{shorterText(item.content, 50)}</Text>}
         {item.author && <Text font={12}>Author: {item.author}</Text>}
