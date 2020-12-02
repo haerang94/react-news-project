@@ -1,17 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "reducers";
-import { searchNewsThunk } from "reducers/news";
+import useNews from "customHooks/useNews";
+import Page from "components/Page";
 
-const PageContainer = () => {
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.news.news
+// 페이지 이동 버튼 컨테이너
+const PageContainer = React.memo(() => {
+  const { keyword, totalResults, onPageMove } = useNews();
+
+  return (
+    <Page
+      totalResults={totalResults}
+      onPageMove={onPageMove}
+      keyword={keyword}
+    ></Page>
   );
-  const dispatch = useDispatch();
-  //   const onPageMove = (page: number = 1) => {
-  //     dispatch(searchNewsThunk(page));
-  //   };
-  return <div></div>;
-};
+});
 
 export default PageContainer;

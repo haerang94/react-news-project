@@ -1,6 +1,8 @@
 export interface Welcome {
   articles: Article[];
   data?: Article[];
+  totalResults: number | null;
+  status: string;
 }
 
 export interface Article {

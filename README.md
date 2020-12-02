@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+### 프로젝트 구현 화면
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
 
-## Available Scripts
+- ![구현이미지](./src/images/news_project.gif)
 
-In the project directory, you can run:
+### `상단 바`
 
-### `yarn start`
+- React News Web을 누르면 홈 화면으로 이동합니다.
+- 오른쪽에는 로그인과 즐겨찾기 탭이 있습니다.
+- 로그인을 하면 로그아웃 탭으로 변경됩니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `로그인`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 로그인을 하지 않으면 즐겨찾기(별)을 할 수 없습니다.
+- 상단의 LogIn버튼을 누르면 로그인페이지로 이동합니다.
+- 아이디와 비밀번호가 틀리거나 입력하지 않고 로그인 버튼을 누르면 경고문이 나옵니다.
+- 로그인에 성공하면 localStorage에 id와 password가 저장됩니다.
+- 로그아웃 버튼을 누르면 id와 password가 localStore상에서 삭제됩니다. (즐겨찾기도 같이 삭제되게 했습니다.)
 
-### `yarn test`
+### `페이지 버튼`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 한 페이지 당 6개의 데이터를 불러오며 그 이상의 요청은 무료 플랜에서 가져올 수 없어 최대 페이지 버튼 16으로 제한했습니다.
 
-### `yarn build`
+- 가장 처음이나 끝에 도달하면 더이상 이동할 수없습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 정렬은 한 페이지 기준으로 합니다.(한번에 불러오는 데이터가 6개로 제한)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `즐겨찾기`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 로그인한 상태에서 별 아이콘을 눌러 즐겨찾기를 합니다.
+- bookmark 탭을 눌러 이동하면 즐겨찾기한 기사를 볼 수 있습니다.
+- 오른쪽 편집 아이콘을 눌러 content를 수정할 수 있습니다.
+- bookmark페이지에서는 수정한 기사를 계속 볼 수 있으나 메인 화면의 본 기사는 수정되지 않습니다.
+- 별 아이콘을 다시 누르면 즐겨찾기가 삭제됩니다.
 
-### `yarn eject`
+### `정렬`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 한 페이지 단위로 정렬이 수행됩니다.
+- 상단의 드롭박스의 날짜순(최근순), 출처순(오름차순)에 따라 기사가 재정렬됩니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `폴더`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- containers 폴더
+  - 주로 데이터를 불러와 components폴더의 컴포넌트에게 데이터를 뿌려주는 역할을 합니다.
+- components 폴더
+  - 주로 UI를 구성합니다
+  - 주로 재사용됩니다
+- reducers 폴더
+  - api 호출을 위한 redux thunk로 파일을 분리해 작성했습니다.
+  - news관련 데이터를 저장했습니다.
+- styles 폴더
+  - styled components를 위한 글로벌 스타일, theme 스타일이 정의되어 있습니다.
+- types 폴더
+  - 재사용되는 Props타입이 정의되어 있습니다
+- pages 폴더
+  - 각 페이지 별 재사용되는 컴포넌트를 불러오며 라우팅되는 컴포넌트입니다.
+- customHooks 폴더
+  - 즐겨찾기, 뉴스, input onChange 등을 위한 커스텀 훅스 함수입니다.
+- utils 폴더
+  - api 요청이 있습니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 기타 설명
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- .env에 api키 있습니다.
+- 제목도 content처럼 긴 것은 줄였습니다.

@@ -1,15 +1,28 @@
 import React from "react";
+import styled from "styled-components";
 import NewsContainer from "containers/NewsContainer";
 import SearchContainer from "containers/SearchContainer";
 import PageContainer from "containers/PageContainer";
-const MainPage = () => {
+import HeaderContainer from "containers/HeaderContainer";
+import FilterContainer from "containers/FilterContainer";
+
+const PageWrapper = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MainPage = React.memo(() => {
   return (
-    <div>
+    <PageWrapper>
+      <HeaderContainer />
       <SearchContainer />
+      <FilterContainer />
       <NewsContainer />
       <PageContainer />
-    </div>
+    </PageWrapper>
   );
-};
+});
 
 export default MainPage;

@@ -19,7 +19,7 @@ export function getNewsThunk(
   };
 }
 export function searchNewsThunk(
-  text: string,
+  text: string | null,
   page: number = 1
 ): ThunkAction<void, RootState, null, NewsAction> {
   return async (dispatch) => {
